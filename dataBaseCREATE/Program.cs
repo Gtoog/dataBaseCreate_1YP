@@ -71,42 +71,4 @@ class Program
             Console.WriteLine("База данных и таблицы успешно созданы или уже существуют!");
         }
     }
-
-    static void AddStudent(string firstName, string lastName, DateTime dateOfBirth)
-    {
-        string connectionString = "Server=NPK-102O-11;Database=University;Integrated Security=true;Encrypt=False;";
-
-        using (SqlConnection connection = new SqlConnection(connectionString))
-        {
-            connection.Open();
-            string insertStudentQuery = "INSERT INTO Students (FirstName, LastName, DateOfBirth) VALUES (@FirstName, @LastName, @DateOfBirth)";
-
-            using (SqlCommand command = new SqlCommand(insertStudentQuery, connection))
-            {
-                command.Parameters.AddWithValue("@FirstName", firstName);
-                command.Parameters.AddWithValue("@LastName", lastName);
-                command.Parameters.AddWithValue("@DateOfBirth", dateOfBirth);
-                command.ExecuteNonQuery();
-            }
-        }
-    }
-
-    static void AddCourse(string courseName, int credits)
-    {
-        string connectionString = "Server=NPK-102O-11;Database=University;Integrated Security=true;Encrypt=False;";
-
-
-        using (SqlConnection connection = new SqlConnection(connectionString))
-        {
-            connection.Open();
-            string insertCourseQuery = "INSERT INTO Courses (CourseName, Credits) VALUES (@CourseName, @Credits)";
-
-            using (SqlCommand command = new SqlCommand(insertCourseQuery, connection))
-            {
-                command.Parameters.AddWithValue("@CourseName", courseName);
-                command.Parameters.AddWithValue("@Credits", credits);
-                command.ExecuteNonQuery();
-            }
-        }
-    }
 }
